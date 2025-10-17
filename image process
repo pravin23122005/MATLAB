@@ -1,0 +1,22 @@
+i=imread("peppers.png");
+imshow(i);
+R=i(:,:,1);
+imshow(R)
+G=i(:,:,2);
+imshow(R)
+B=i(:,:,2);
+imshow(B)
+recon=cat(3,R,G,B);
+imshow(recon);
+z=imread("1.png");
+z1=0*z;
+imshow(z1)
+z=imread("1.png");
+z2=255+z;
+imshow(z2)
+irezise=imresize(z,[40 50]);
+montage({z,irezise})
+s=rgb2gray(z);
+s1=edge(s,'prewitt');
+figure;
+imshowpair(s,s1,'montage')
