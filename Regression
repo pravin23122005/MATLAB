@@ -1,0 +1,15 @@
+data1 = readtable('tsunamis.xlsx') 
+geobubble(data1.Latitude, data1.Longitude, 'ColorData', categorical(data1.Cause)) 
+geobasemap colorterrain
+data2 = data1(:, {'Latitude', 'Longitude', 'EarthquakeMagnitude', ...
+    'IidaMagnitude', 'Intensity', 'MaxHeight', 'Validity', 'Location', 'Country'})
+data2 = rmmissing(data2)
+[train, test] = crossvalind('HoldOut', length(data2.Intensity), 0.1)
+train_data = data2(train, :)
+test_data = data2(test, :)
+whos train_data test_data 
+regressionLearner 
+%After opening the app click the new session 
+%select the input and output then set the testing percentage 
+%click the start session then select the regression model 
+%Train and test the data not the accuracy percentage
