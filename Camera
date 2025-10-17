@@ -1,0 +1,15 @@
+clc
+clear all
+m=mobiledev;
+cam=m.camera('back');
+[net, classNames] = imagePretrainedNetwork("alexnet");
+h = figure;
+while ishandle(h)
+    im = snapshot(cam,'manual');
+    image(im)
+    im = imresize(im,[227 227]);
+    im=single(im);
+    score = predict(net,im);
+Label = scores2label(score, classNames)
+    drawnow
+end
